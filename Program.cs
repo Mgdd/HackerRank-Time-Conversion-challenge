@@ -1,4 +1,4 @@
-﻿using System.CodeDom.Compiler;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections;
 using System.ComponentModel;
@@ -16,30 +16,16 @@ class Result
 {
 
     /*
-     * Complete the 'plusMinus' function below.
+     * Complete the 'timeConversion' function below.
      *
-     * The function accepts INTEGER_ARRAY arr as parameter.
+     * The function is expected to return a STRING.
+     * The function accepts STRING s as parameter.
      */
 
-    public static void plusMinus(List<int> arr)
+    public static string timeConversion(string s)
     {
-        double n = arr.Count;
-        double plus = 0, minus = 0, zeros = 0;
-        foreach (var i in arr)
-        {
-            if (i > 0)
-                plus++;
-            if (i < 0)
-                minus++;
-            if (i == 0)
-                zeros++;
-        }
-        string nplus = (plus / n).ToString("0.000000");
-        string nminus = (minus / n).ToString("0.000000");
-        string nzeros = (zeros / n).ToString("0.000000"); ;
-        System.Console.WriteLine("{0} ", nplus);
-        System.Console.WriteLine("{0} ", nminus);
-        System.Console.WriteLine("{0} ", nzeros);
+string militaryFormat=(Convert.ToDateTime(s)).ToString("HH:mm:ss");
+        return militaryFormat;
     }
 
 }
@@ -48,10 +34,15 @@ class Solution
 {
     public static void Main(string[] args)
     {
-        int n = Convert.ToInt32(Console.ReadLine().Trim());
+        TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 
-        List<int> arr = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt32(arrTemp)).ToList();
+        string s = Console.ReadLine();
 
-        Result.plusMinus(arr);
+        string result = Result.timeConversion(s);
+
+        textWriter.WriteLine(result);
+
+        textWriter.Flush();
+        textWriter.Close();
     }
 }
